@@ -1,24 +1,34 @@
 //import express from "express";
+
 let express = require("express");
+//import userRepo from "./repos/userRepo";
+const userRepo = require("./repos/userRepo");
 
 let app = express();
 
 //define the route
 let router = express.Router();
+let users = userRepo.get();
 
 app.use("/api", router);
 
 //send the array of users
-const users = [
-  { name: "John Smith", age: 36, gender: "Male" },
-  { name: "Krish Shetty", age: 26, gender: "Male" },
-  { name: "Meena sharma", age: 46, gender: "Female" },
-];
+// const users = [
+//   { name: "John Smith", age: 36, gender: "Male" },
+//   { name: "Krish Shetty", age: 26, gender: "Male" },
+//   { name: "Meena sharma", age: 46, gender: "Female" },
+// ];
 
 //Read operation
 router.get("/", (req, res, next) => {
   //res.status(200).send("Successful");
-  res.status(200).send(users);
+  //res.status(200).send(users);
+  res.status(200).json({
+    status: 200,
+    statusText: "ok",
+    message: "Users data fetched successfully",
+    data: users,
+  });
 });
 
 const port = 5000;

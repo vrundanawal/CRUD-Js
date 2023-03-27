@@ -23,3 +23,5 @@ to run the project add the start script in package.json file
 //Read the operation - Returning Array Data
 //Send array of users
 
+//Read the users data from file
+
