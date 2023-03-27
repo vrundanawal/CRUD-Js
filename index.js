@@ -8,7 +8,7 @@ let app = express();
 
 //define the route
 let router = express.Router();
-let users = userRepo.get();
+//let users = userRepo.get();
 
 app.use("/api", router);
 
@@ -23,12 +23,19 @@ app.use("/api", router);
 router.get("/", (req, res, next) => {
   //res.status(200).send("Successful");
   //res.status(200).send(users);
-  res.status(200).json({
-    status: 200,
-    statusText: "ok",
-    message: "Users data fetched successfully",
-    data: users,
-  });
+  userRepo.get(
+    function (data) {
+      res.status(200).json({
+        status: 200,
+        statusText: "ok",
+        message: "Users data fetched successfully",
+        data: data,
+      });
+    },
+    function (err) {
+      next(err);
+    }
+  );
 });
 
 const port = 5000;
