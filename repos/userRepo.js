@@ -32,6 +32,30 @@ let userRepo = {
       }
     });
   },
+
+  //Add or Create user
+  createUser: function (user, resolve, reject) {
+    //read the file
+    fs.readFile(FILEPATH, function (error, data) {
+      if (error) {
+        reject(error);
+      } else {
+        let users = JSON.parse(data);
+        if (user) {
+          //push the user inside the users array
+          users.push(user);
+        }
+        //writting with new user in users array
+        fs.writeFile(FILEPATH, JSON.stringify(users), function (error) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(user);
+          }
+        });
+      }
+    });
+  },
 };
 
 module.exports = userRepo;

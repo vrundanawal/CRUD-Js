@@ -10,6 +10,7 @@ let app = express();
 let router = express.Router();
 //let users = userRepo.get();
 
+app.use(express.json()); //received the json data in post method
 app.use("/api", router);
 
 //send the array of users
@@ -48,7 +49,25 @@ router.get("/:id", (req, res, next) => {
       res.status(200).json({
         status: 200,
         statusText: "ok",
-        message: "Users data fetched successfully",
+        message: "User data fetched successfully",
+        data: data,
+      });
+    },
+    function (err) {
+      next(err);
+    }
+  );
+});
+
+//Create User
+router.post("/", (req, res, next) => {
+  userRepo.createUser(
+    req.body,
+    function (data) {
+      res.status(200).json({
+        status: 201,
+        statusText: "Create",
+        message: "Users created successfully",
         data: data,
       });
     },
