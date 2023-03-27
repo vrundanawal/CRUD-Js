@@ -1,0 +1,25 @@
+1) npm init
+install the express server
+2)npm install express
+entry point for the project iss index.js
+3) create a index.js file
+4) import express server 
+5) create a routes
+
+
+Read the application
+//get method
+//listren to the port number
+
+
+to run the project add the start script in package.json file
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+6) npm start
+
+//Read the operation - Returning Array Data
+//Send array of users
+
