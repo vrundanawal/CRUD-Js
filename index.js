@@ -38,6 +38,26 @@ router.get("/", (req, res, next) => {
   );
 });
 
+//get by id user data
+router.get("/:id", (req, res, next) => {
+  //for id
+  let id = req.params.id;
+  userRepo.getById(
+    id,
+    function (data) {
+      res.status(200).json({
+        status: 200,
+        statusText: "ok",
+        message: "Users data fetched successfully",
+        data: data,
+      });
+    },
+    function (err) {
+      next(err);
+    }
+  );
+});
+
 const port = 5000;
 //listen on port number
 app.listen(port, () => {

@@ -1,17 +1,5 @@
 [
-  {
-    "name": "John Does",
-    "age": 36,
-    "gender": "Male"
-  },
-  {
-    "name": "Krish Shetty",
-    "age": 26,
-    "gender": "Male"
-  },
-  {
-    "name": "Meena sharma",
-    "age": 46,
-    "gender": "Female"
-  }
+  { "id": 1, "name": "John Does", "age": 36, "gender": "Male" },
+  { "id": 2, "name": "Krish Shetty", "age": 26, "gender": "Male" },
+  { "id": 3, "name": "Meena sharma", "age": 46, "gender": "Female" }
 ]
