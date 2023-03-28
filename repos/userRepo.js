@@ -89,6 +89,36 @@ let userRepo = {
       }
     });
   },
+
+  //delete user
+  deleteUser: function (id, resolve, reject) {
+    //read the file
+    fs.readFile(FILEPATH, function (error, data) {
+      if (error) {
+        reject(error);
+      } else {
+        let users = JSON.parse(data);
+        //find the index with findIndex() method
+        let index = users.findIndex((user) => user.id == id);
+        //users.filter((item) => item.id !== id)
+        if (index > -1) {
+          users.splice(index, 1);
+        } else {
+          let ex = new Error("User not found");
+          reject(ex);
+          return;
+        }
+        //writting with new user in users array
+        fs.writeFile(FILEPATH, JSON.stringify(users), function (error) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve("User Deleted!");
+          }
+        });
+      }
+    });
+  },
 };
 
 module.exports = userRepo;

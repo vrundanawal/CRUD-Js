@@ -96,7 +96,39 @@ router.put("/:id", (req, res, next) => {
       res.status(404).json({
         status: 404,
         statusText: err.message,
-        error: err,
+        error: err.message,
+      });
+    }
+  );
+});
+
+//Delete the user
+router.delete("/:id", (req, res, next) => {
+  let id = req.params.id;
+  userRepo.deleteUser(
+    id,
+    function (data) {
+      if (data) {
+        res.status(200).json({
+          status: 200,
+          statusText: "User Deleted",
+          message: `User with id ${id} deleted!`,
+          data: data,
+        });
+      } else {
+        res.status(404).json({
+          status: 404,
+          statusText: err.message,
+          error: err.message,
+        });
+      }
+    },
+    //handle the error
+    function (err) {
+      res.status(404).json({
+        status: 404,
+        statusText: err.message,
+        error: err.message,
       });
     }
   );

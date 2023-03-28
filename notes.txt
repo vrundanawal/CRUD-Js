@@ -31,5 +31,12 @@ to run the project add the start script in package.json file
 
 //Update Operation
 //Put Method need to implement
+//user Object.assign() method
+//handle the error
+
+//Delete Operation
+//used findIndex method to check the index 
+//splice method to remove the element from the array
+
 
 
