@@ -56,6 +56,31 @@ let userRepo = {
       }
     });
   },
+
+  //Update user
+  updateUser: function (id, newUserData, resolve, reject) {
+    //read the file
+    fs.readFile(FILEPATH, function (error, data) {
+      if (error) {
+        reject(error);
+      } else {
+        let users = JSON.parse(data);
+        //find the user with the id
+        let user = users.find((user) => user.id == id);
+        //using Object.assign method merged user with updated value
+        Object.assign(user, newUserData);
+        console.log(newUserData);
+        //writting with new user in users array
+        fs.writeFile(FILEPATH, JSON.stringify(users), function (error) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(user);
+          }
+        });
+      }
+    });
+  },
 };
 
 module.exports = userRepo;

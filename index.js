@@ -64,10 +64,30 @@ router.post("/", (req, res, next) => {
   userRepo.createUser(
     req.body,
     function (data) {
-      res.status(200).json({
+      res.status(201).json({
         status: 201,
         statusText: "Create",
         message: "Users created successfully",
+        data: data,
+      });
+    },
+    function (err) {
+      next(err);
+    }
+  );
+});
+
+//Update the user
+router.put("/:id", (req, res, next) => {
+  let id = req.params.id;
+  userRepo.updateUser(
+    id,
+    req.body,
+    function (data) {
+      res.status(200).json({
+        status: 200,
+        statusText: "Update",
+        message: "Users Updated successfully",
         data: data,
       });
     },
