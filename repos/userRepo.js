@@ -68,7 +68,15 @@ let userRepo = {
         //find the user with the id
         let user = users.find((user) => user.id == id);
         //using Object.assign method merged user with updated value
-        Object.assign(user, newUserData);
+        //to handle the error with invalid id
+        if (user) {
+          Object.assign(user, newUserData);
+        } else {
+          let ex = new Error("User not found");
+          reject(ex);
+          return;
+        }
+
         console.log(newUserData);
         //writting with new user in users array
         fs.writeFile(FILEPATH, JSON.stringify(users), function (error) {

@@ -91,8 +91,13 @@ router.put("/:id", (req, res, next) => {
         data: data,
       });
     },
+    //handle the error
     function (err) {
-      next(err);
+      res.status(404).json({
+        status: 404,
+        statusText: err.message,
+        error: err,
+      });
     }
   );
 });
